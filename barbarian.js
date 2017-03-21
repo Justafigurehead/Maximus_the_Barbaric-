@@ -5,7 +5,12 @@ var barbarian = {
   favBrew: "MaxBrew", 
   healthPts: 100, 
   drink: function(beer){
-    healthPts += beer.heal();
+    if (beer.name === this.favBrew){
+      this.healthPts += beer.drinkme();
+      this.angerlvl = 0;
+    } else {
+      this.angerlvl = 100;
+    }
   }
 } 
 

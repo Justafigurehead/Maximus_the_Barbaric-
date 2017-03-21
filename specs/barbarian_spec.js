@@ -1,9 +1,11 @@
 var maximus = require('../barbarian');
 var assert = require('assert');
+var maxbrew = require('../maxbrew');
 
 describe('Maximus', function(){
 
 beforeEach(function(){
+  // maximus.healthPts = 100;
   maximus.angerlvl = 99;
 });
 
@@ -23,10 +25,24 @@ beforeEach(function(){
     assert.equal("MaxBrew", maximus.favBrew);
   });
 
+  it('should have healthPts', function(){
+    assert.equal(100, maximus.healthPts);
+  });
+
   it('drinking beer should increase Maximus health pts', function(){
     maximus.healthPts = 1;
-    maximus.drink(MaxBrew);
-    assert.equal(100, maximus.healthPts);
+    maximus.drink(maxbrew);
+    assert.equal(26, maximus.healthPts);
+  });
+
+  it('drinking beer should decrease Maximus\'s angerlvl if it is his favourite', function(){
+    maximus.drink(maxbrew);
+    assert.equal(0, maximus.angerlvl);
+  });
+
+  it('drinking a beer that is not his favourite and turns into a rageBeast', function(){
+    maximus.drink("Tea_nutsBrew");
+    assert.equal(100,maximus.angerlvl);
   });
 
 })
